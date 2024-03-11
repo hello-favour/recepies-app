@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recepies_app/services/auth_service.dart';
+import 'package:status_alert/status_alert.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -108,12 +109,24 @@ class _LoginViewState extends State<LoginView> {
         onPressed: () async {
           if (_loginFormkey.currentState?.validate() ?? false) {
             _loginFormkey.currentState?.save();
-            print("$username - $password");
             bool result = await AuthService().login(
               username!,
               password!,
             );
-            print(result);
+            if (result) {
+              Navigator.pushReplacementNamed(context, "/home");
+            } else {
+              StatusAlert.show(
+                context,
+                duration: Duration(seconds: 2),
+                title: "Login Fialed",
+                subtitle: "Please try again",
+                configuration: const IconConfiguration(
+                  icon: Icons.error,
+                ),
+                maxWidth: 260,
+              );
+            }
           }
         },
         child: const Text("Login"),

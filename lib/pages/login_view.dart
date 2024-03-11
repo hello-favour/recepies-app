@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recepies_app/services/auth_service.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -104,10 +105,15 @@ class _LoginViewState extends State<LoginView> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.60,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (_loginFormkey.currentState?.validate() ?? false) {
             _loginFormkey.currentState?.save();
             print("$username - $password");
+            bool result = await AuthService().login(
+              username!,
+              password!,
+            );
+            print(result);
           }
         },
         child: const Text("Login"),

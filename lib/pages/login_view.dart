@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
-              initialValue: "Favor",
+              initialValue: "kminchelle",
               onSaved: (value) {
                 setState(() {
                   username = value;
@@ -79,7 +79,7 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             TextFormField(
-              initialValue: "dada@123",
+              initialValue: "0lelplR",
               onSaved: (value) {
                 setState(() {
                   password = value;
@@ -113,6 +113,7 @@ class _LoginViewState extends State<LoginView> {
               username!,
               password!,
             );
+            print(result);
             if (result) {
               Navigator.pushReplacementNamed(context, "/home");
             } else {

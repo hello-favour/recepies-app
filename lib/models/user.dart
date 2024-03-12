@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
 class User {
   final int id;
   final String username;
@@ -56,52 +53,16 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
+  factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: map['id'] as int,
-      username: map['username'] as String,
-      email: map['email'] as String,
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      gender: map['gender'] as String,
-      image: map['image'] as String,
-      token: map['token'] as String,
+      id: json['id'] as int,
+      username: json['username'] as String,
+      email: json['email'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      gender: json['gender'] as String,
+      image: json['image'] as String,
+      token: json['token'] as String,
     );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'User(id: $id, username: $username, email: $email, firstName: $firstName, lastName: $lastName, gender: $gender, image: $image, token: $token)';
-  }
-
-  @override
-  bool operator ==(covariant User other) {
-    if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.username == username &&
-      other.email == email &&
-      other.firstName == firstName &&
-      other.lastName == lastName &&
-      other.gender == gender &&
-      other.image == image &&
-      other.token == token;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      username.hashCode ^
-      email.hashCode ^
-      firstName.hashCode ^
-      lastName.hashCode ^
-      gender.hashCode ^
-      image.hashCode ^
-      token.hashCode;
   }
 }
